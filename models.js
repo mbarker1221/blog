@@ -16,6 +16,9 @@ function StorageException(message) {
 }
 
 const BlogPosts = {
+  init() {
+    console.log("blogPost object intitialized");
+  },
   create: function(title, content, author, publishDate) {
     const post = {
       id: uuid.v4(),
