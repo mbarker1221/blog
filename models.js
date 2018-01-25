@@ -64,9 +64,11 @@ const BlogPosts = {
 };
 
 function createBlogPostsModel() {
-  const storage = Object.create(BlogPosts);
-  storage.posts = [];
-  return storage;
+  this.actions = BlogPosts;
+  this.storage = {posts:[]};
+  //const storage = Object.create(BlogPosts);
+  //storage.posts = [];
+  return this;
 }
 
 
