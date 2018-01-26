@@ -16,9 +16,6 @@ function StorageException(message) {
 }
 
 const BlogPosts = {
-  init() {
-    console.log("blogPost object intitialized");
-  },
   create: function(title, content, author, publishDate) {
     const post = {
       id: uuid.v4(),
@@ -64,11 +61,9 @@ const BlogPosts = {
 };
 
 function createBlogPostsModel() {
-  this.actions = BlogPosts;
-  this.storage = {posts:[]};
-  //const storage = Object.create(BlogPosts);
-  //storage.posts = [];
-  return this;
+  const storage = Object.create(BlogPosts);
+  storage.posts = [];
+  return storage;
 }
 
 
