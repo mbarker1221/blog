@@ -7,8 +7,8 @@ const jsonParser = bodyParser.json();
 
 const {BlogPosts} = require('./models.js');
 
-BlogPosts.create('My Trip', 'This summer I travelled to Europe...');
-BlogPosts.create('My Blog', 'That is where i started this blog...');
+BlogPosts.create('My Trip', 'This summer I travelled to Europe...', 'M.Barker');
+BlogPosts.create('My Blog', 'That is where i started this blog...', 'M.Barker');
 
 router.get('/blog-posts', (req, res) => {
     res.json(BlogPosts.get());
@@ -16,7 +16,7 @@ router.get('/blog-posts', (req, res) => {
 
 router.post('/blog-posts', jsonParser, (req, res) => {
 
-    const requiredFields = ['title', 'content', 'author', 'publishDate'];
+    const requiredFields = ['title', 'content', 'author'];
 
     for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
@@ -32,7 +32,7 @@ router.post('/blog-posts', jsonParser, (req, res) => {
 
 
 router.put('blog-posts/:id', jsonParser, (req, res) => {
-        const requiredFields = ['title', 'content', 'author', 'publishDate'];
+        const requiredFields = ['title', 'content', 'author'];
         for (let i = 0; i < requiredFields.length; i++) {
             const field = requiredFields[i];
             if (!(field in req.body)) {
@@ -49,8 +49,7 @@ router.put('blog-posts/:id', jsonParser, (req, res) => {
         id: req.params.id,
         title: req.params.title,
         content: req.body.content,
-        author: req.body.author,
-        publishDate: req.body.publishDate
+        author: req.body.author
     });
 
     res.status(204).end();
