@@ -1,23 +1,17 @@
 const express = require('express');
 const morgan = require('morgan');
-
 const app = express();
 
-//const postRouter = require('./postRouter');
-//const eraseRouter = require('./eraseRouter');
-const blogPosts = require('./models.js');
-console.log(blogPosts);
-//blogPosts.init();
+
+const BlogPostsRouter = require('./router.js');
+const router = express.Router();
 
 app.use(morgan('common'));
+app.use('/blog-posts', router);
 
-app.use(express.static('public'));
+const {BlogPosts} = require('./models.js');
 
-//  res.sendFile(__dirname + '/index.html');
-//});
-
-//app.use('/blog-posts/:id', eraseRouter);
 
 app.listen(process.env.PORT || 8080, () => {
-  console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
+    console.log(`Your app is listening on port $ {process.env.PORT || 8080}`);
 });
